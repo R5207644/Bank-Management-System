@@ -31,7 +31,6 @@
                                 <input type="email" name="email" class="form-control" required>
                                 <input type="pass" name="pass" class="form-control" required>
                                 <input type="submit" value="Login" class="form-control btn btn-primary" required>
-                                <p><a href="Register.jsp">Not registered</a></p>
                             </form>
                         </div>
                     </div>
@@ -44,7 +43,8 @@
                     </h2>
                     <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            <form>
+                            <form method="post" action="Login">
+                                <input type="hidden" name="u_type" value="manager">
                                 <input type="email" name="email" class="form-control">
                                 <input type="pass" name="pass" class="form-control">
                                 <input type="submit" value="Login" class="form-control btn btn-primary">
