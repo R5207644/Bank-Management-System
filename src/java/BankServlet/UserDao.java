@@ -151,9 +151,15 @@ public class UserDao {
 
         try {
             Connection con = getConnection();
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM transactions"
-                    + " WHERE account_no = (SELECT account_no FROM users WHERE email=?)");
+            PreparedStatement ps = con.prepareStatement(
+                    "SELECT  * FROM transactions "
+                    + "WHERE account_no = (SELECT account_no FROM users WHERE email=?) "
+                    + "UNION ALL "
+                    + "SELECT  * FROM transfer "
+                    + "WHERE account_no = (SELECT account_no FROM users WHERE email=?)"
+            );
             ps.setString(1, email);
+            ps.setString(2, email);
 
             rs = ps.executeQuery();
         } catch (Exception ex) {
