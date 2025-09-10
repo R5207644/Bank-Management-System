@@ -20,6 +20,7 @@
 
             if (u_type == null || email == null) {
                 response.sendRedirect("Login");
+                return;
             }
 
             if (!(u_type.equals("manager"))) {

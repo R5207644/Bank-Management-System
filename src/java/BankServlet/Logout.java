@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-package Controller;
+package BankServlet;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.*;

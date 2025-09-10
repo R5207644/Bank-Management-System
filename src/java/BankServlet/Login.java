@@ -2,10 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Controller;
+package BankServlet;
 
-import Models.User;
-import Models.UserDao;
 import java.io.*;
 import java.sql.*;
 import javax.servlet.*;
@@ -33,32 +31,33 @@ public class Login extends HttpServlet {
         email = req.getParameter("email");
         pass = req.getParameter("pass");
 
+        User u = new User();
+        u.setU_type(u_type);
+        u.setEmail(email);
+        u.setPass(pass);
+
         if (u_type.equals("user")) {
-            User u = new User();
-            u.setU_type(u_type);
-            u.setEmail(email);
-            u.setPass(pass);
 
             int validation = UserDao.read(u);
 
             switch (validation) {
-                case 0 ->  {
+                case 0 -> {
                     out.print("<h1 class='text-warning'>You are not not registered users</h1>");
                     RequestDispatcher rd = req.getRequestDispatcher("/Login.jsp");
                     rd.include(req, res);
                 }
-                case 1 ->  {
+                case 1 -> {
                     Session.setAttribute("u_type", u_type);
                     Session.setAttribute("email", email);
                     res.sendRedirect("Index");
                 }
 
-                case 3 ->  {
+                case 3 -> {
                     out.print("<h1 class='text-info'>Server Error occured</h1>");
                     RequestDispatcher rd = req.getRequestDispatcher("/Login.jsp");
                     rd.include(req, res);
                 }
-                default ->  {
+                default -> {
                     out.print("<h1 class='text-danger'>Wrong password</h1>");
                     RequestDispatcher rd = req.getRequestDispatcher("/Login.jsp");
                     rd.include(req, res);
@@ -69,6 +68,18 @@ public class Login extends HttpServlet {
                 Session.setAttribute("u_type", "manager");
                 Session.setAttribute("email", email);
                 res.sendRedirect("Manager.jsp");
+            } else {
+                out.print("<h1 class='text-danger'>Wrong email or password</h1>");
+                RequestDispatcher rd = req.getRequestDispatcher("/Login.jsp");
+                rd.include(req, res);
+            }
+        } else if (u_type.equals("cashier")) {
+            int validation = TellerDao.login(u);
+
+            if (validation == 1) {
+                Session.setAttribute("u_type", u_type);
+                Session.setAttribute("email", email);
+                res.sendRedirect("Cashier.jsp");
             } else {
                 out.print("<h1 class='text-danger'>Wrong email or password</h1>");
                 RequestDispatcher rd = req.getRequestDispatcher("/Login.jsp");

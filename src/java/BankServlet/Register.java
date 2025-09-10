@@ -2,10 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Controller;
+package BankServlet;
 
-import Models.User;
-import Models.UserDao;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -25,16 +23,16 @@ public class Register extends HttpServlet {
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
         String name, branch, account_type, email, pass, confirm_pass;
-        double account_no, balance, contact;
+        long account_no, balance, contact;
         PrintWriter out = res.getWriter();
         res.setContentType("text/html");
 
         name = req.getParameter("name");
         branch = req.getParameter("branch");
         account_type = req.getParameter("account_type");
-        account_no = Double.parseDouble(req.getParameter("account_no"));
-        balance = Double.parseDouble(req.getParameter("balance"));
-        contact = Double.parseDouble(req.getParameter("contact"));
+        account_no = Long.parseLong(req.getParameter("account_no"));
+        balance = Long.parseLong(req.getParameter("balance"));
+        contact = Long.parseLong(req.getParameter("contact"));
         email = req.getParameter("email");
         pass = req.getParameter("pass");
         confirm_pass = req.getParameter("confirm_pass");

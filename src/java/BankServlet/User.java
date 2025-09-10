@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Models;
+package BankServlet;
 
 /**
  *
@@ -11,7 +11,7 @@ package Models;
 public class User {
 
     private String u_type, name, branch, account_type, email, pass;
-    private double account_no, balance, contact;
+    private Long account_no, balance, contact;
 
     public String getU_type() {
         return u_type;
@@ -61,28 +61,27 @@ public class User {
         this.pass = pass;
     }
 
-    public double getAccount_no() {
+    public Long getAccount_no() {
         return account_no;
     }
 
-    public void setAccount_no(double account_no) {
+    public void setAccount_no(Long account_no) {
         this.account_no = account_no;
     }
 
-    public double getBalance() {
+    public Long getBalance() {
         return balance;
     }
 
-    public void setBalance(double balance) {
+    public void setBalance(Long balance) {
         this.balance = balance;
     }
 
-    public double getContact() {
+    public Long getContact() {
         return contact;
     }
 
-    public void setContact(double contact) {
+    public void setContact(Long contact) {
         this.contact = contact;
     }
-
 }

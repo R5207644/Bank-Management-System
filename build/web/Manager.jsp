@@ -19,12 +19,13 @@
             
             if (u_type == null || email == null) {
                 response.sendRedirect("Login");
+                return;
             }
             
             if(!(u_type.equals("manager"))) {
                 response.sendRedirect("Login");
             }
         %>
-        <jsp:include page="nav.jsp"/>
+        <jsp:include page="AllUsers.jsp"/>
     </body>
 </html>
